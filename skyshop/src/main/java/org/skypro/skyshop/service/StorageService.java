@@ -16,21 +16,27 @@ public class StorageService {
     private final Map<UUID, Product> products;
     private final Map<UUID, Article> articles;
 
-    private void addToStorage() {
-        products.put(UUID.randomUUID(), new SimpleProduct("tomatoes", UUID.randomUUID(), 575));
-        products.put(UUID.randomUUID(), new DiscountedProduct("peaches", UUID.randomUUID(), 575, 10));
-        products.put(UUID.randomUUID(), new FixPriceProduct("cucumbers", UUID.randomUUID()));
-        articles.put(UUID.randomUUID(), new Article("Easter Eggs", "For porridge and " +
-                "salad: oils!", UUID.randomUUID()));
-        articles.put(UUID.randomUUID(), new Article("Extra sweet sugar!", "To give taste " +
-                "without sugar!", UUID.randomUUID()));
-    }
-
     public StorageService(Map<UUID, Product> products, Map<UUID, Article> articles) {
         this.products = products;
         this.articles = articles;
         this.addToStorage();
     }
+
+    private void addToStorage() {
+        SimpleProduct tomatoes = new SimpleProduct("tomatoes", UUID.randomUUID(), 575);
+        DiscountedProduct peaches = new DiscountedProduct("peaches", UUID.randomUUID(), 575, 10);
+        FixPriceProduct cucumbers = new FixPriceProduct("cucumbers", UUID.randomUUID());
+        Article aboutEggs = new Article("Easter Eggs", "For porridge and " +
+                "salad: oils!", UUID.randomUUID());
+        Article aboutSugar = new Article("Extra sweet sugar!", "To give taste " +
+                "without sugar!", UUID.randomUUID());
+        products.put(tomatoes.getId(), tomatoes);
+        products.put(peaches.getId(), peaches);
+        products.put(cucumbers.getId(), cucumbers);
+        articles.put(aboutEggs.getId(), aboutEggs);
+        articles.put(aboutSugar.getId(), aboutSugar);
+    }
+
 
     public Map<UUID, Product> getProducts() {
         return products;

@@ -62,4 +62,5 @@ public abstract class Product implements Searchable {
     public UUID getId() {
         return id;
     }
+
 }
