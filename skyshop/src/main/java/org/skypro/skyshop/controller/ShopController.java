@@ -9,7 +9,6 @@ import org.skypro.skyshop.service.BasketService;
 import org.skypro.skyshop.service.SearchService;
 import org.skypro.skyshop.service.StorageService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +22,7 @@ public class ShopController {
     private final BasketService basketService;
 
 
-    public ShopController(StorageService storageService, SearchService searchService, BasketService basketService, ShopError shopError) {
+    public ShopController(StorageService storageService, SearchService searchService, BasketService basketService) {
         this.storageService = storageService;
         this.searchService = searchService;
         this.basketService = basketService;
@@ -53,17 +52,5 @@ public class ShopController {
     @GetMapping("/basket")
     public UserBasket getUserBasket() {
         return basketService.getUserBasket();
-    }
-
-    @ControllerAdvice
-    public static class ShopControllerAdvice {
-
-        @ExceptionHandler(NoSuchFieldException.class)
-        public ResponseEntity<ShopError> handleException(NoSuchFieldException e) {
-            ShopError shopError = new ShopError("NO_SUCH_PRODUCT_WITH_THIS_ID",
-                    "Продукт не найден!");
-            return new ResponseEntity<ShopError>(shopError, HttpStatus.NOT_FOUND);
-        }
-
     }
 }
