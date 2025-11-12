@@ -9,6 +9,10 @@ public class FixPriceProduct extends Product {
         super(productName, id);
     }
 
+    public FixPriceProduct(String productName) {
+        super(productName, UUID.randomUUID());
+    }
+
     @Override
     public int getProductPrice() {
         return PRODUCT_PRICE;

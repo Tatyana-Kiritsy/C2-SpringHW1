@@ -21,10 +21,9 @@ public class BasketService {
 
     public void addProduct(UUID id) throws NoSuchProductException {
         if (storageService.getProductById(id).isEmpty()) {
-            throw new NoSuchProductException("Такого продукта в корзине нет!");
-        } else {
-            productBasket.addProduct(id);
+            throw new NoSuchProductException("Такого продукта нет!");
         }
+        productBasket.addProduct(id);
     }
 
     public UserBasket getUserBasket() {
